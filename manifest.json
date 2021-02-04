@@ -1,0 +1,20 @@
+{
+  "short_name": "Safe Sushi Swap",
+  "name": "Sushi Swap",
+  "description": "Integration of the Sushi Swap Protocol",
+  "start_url": ".",
+  "icons": [
+    {
+      "src": "/assets/sushi.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "providedBy": {
+    "name": "fritzschoff",
+    "url": "https://github.com/fritzschoff"
+  }
+}
