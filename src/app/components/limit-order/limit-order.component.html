@@ -1,0 +1,95 @@
+<h3>Sushi Swap deployed the Order Book contract only on Kovan. <br>
+  So you don't need to sign a transaction to submit your order.<br>
+  <a href="https://kovan.etherscan.io/address/0xeb0895a92945a7112355e883f4d38615d221e496" target="_blank">
+    Kovan signer</a>
+</h3>
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+  <token [token]="form.get('tokenOne')" label="Token to sell" [withOutEth]="true"></token>
+  <img [src]="value.tokenOne?.logoURI || 'assets/sushi.png'" class="token-img">
+</div>
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+  <mat-form-field appearance="outline">
+    <mat-label>Specify the amount of
+      <ng-container *ngIf="form.get('tokenOne').valueChanges | async as token">
+        {{token?.symbol || ''}}
+      </ng-container>
+    </mat-label>
+    <input matInput type="number" [formControl]="form.get('tokenOneAmount')" autocomplete="off">
+  </mat-form-field>
+  <button mat-raised-button (click)="setMaxBalance()" [disabled]="!form.get('tokenOne').value?.address"
+    color="primary">Set Max</button>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+  <token [token]="form.get('tokenTwo')" label="Token to buy" [withOutEth]="true">
+  </token>
+  <img [src]="value.tokenTwo?.logoURI || 'assets/sushi.png'" class="token-img">
+</div>
+
+<span>Specify the minimum amount you want to get <ng-container
+    *ngIf="form.get('tokenTwo').valueChanges | async as token">
+    in {{token?.symbol || ''}}
+  </ng-container>
+  <ng-container *ngIf="form.get('tokenOne').valueChanges | async as token">for <strong>one</strong>
+    {{token?.symbol || ''}}
+  </ng-container>
+</span>
+<mat-form-field appearance="outline">
+  <mat-label>Minimum amount out
+  </mat-label>
+  <input matInput type="number" [formControl]="form.get('minOut')" autocomplete="off">
+</mat-form-field>
+
+<mat-card *ngIf="pairData?.tokens; else placeholder" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="24px"
+  class="info-card">
+  <article fxLayout="row" fxLayoutAlign="center start">
+    <ng-container *ngIf="form.get('tokenOne').value as token">Swapping
+      <ng-container *ngIf="form.get('tokenOneAmount').value as amount"> {{amount}}</ng-container>
+      {{token.symbol}}
+    </ng-container>
+    <ng-container *ngIf="form.get('tokenTwo').value as token">to {{token.symbol}}</ng-container>
+  </article>
+  <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="24px">
+    <ng-container *ngFor="let token of pairData.tokens| keyvalue">
+      <span>Price of {{token.key}} in WETH: {{token.value}}</span>
+    </ng-container>
+  </div>
+  <span
+    *ngIf="value.tokenOne?.address === weth.address || value.tokenTwo?.address === weth.address; else routeThroughWeth ">
+    Swapping Route is going to be {{ value.tokenOne.symbol}} => {{value.tokenTwo.symbol}}</span>
+  <ng-template #routeThroughWeth>
+    <span> Swapping Route is going to be {{ value.tokenOne?.symbol}} => {{weth.symbol}} =>
+      {{ value.tokenTwo?.symbol }}
+    </span>
+  </ng-template>
+</mat-card>
+
+<ng-template #placeholder>
+  <mat-card class="info-card">
+    <h3>Please fill out the form in order to see the calculation</h3>
+  </mat-card>
+</ng-template>
+
+<mat-card *ngIf="cannotFindPool" class="warn">
+  <span>We didn't find any suitable route for {{ this.value.tokenOne?.symbol }} - {{ this.value.tokenTwo?.symbol }}.
+    Trade will most likely fail!
+  </span>
+</mat-card>
+
+<ng-container *ngIf="!(pendingTx.asObservable() | async); else spinner">
+  <ng-container *ngIf="needApproveToken && this.value.tokenOne?.address; else swapToken">
+    <button mat-raised-button (click)="approveToken()" color="primary">
+      Approve {{ form.get('tokenOne').value?.symbol }}
+    </button>
+    <button mat-raised-button color="warn" (click)="resetForm()">Reset Form</button>
+  </ng-container>
+  <ng-template #swapToken>
+    <button mat-raised-button (click)="createOrder()" color="primary"
+      [disabled]="!value.tokenOne?.address || !value.tokenTwo?.address || value.minOut < 0 || value.tokenOneAmount < 0">
+      Swap tokens
+    </button>
+    <button mat-raised-button color="warn" (click)="resetForm()">Reset Form</button>
+  </ng-template>
+</ng-container>
+<ng-template #spinner>
+  <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+</ng-template>

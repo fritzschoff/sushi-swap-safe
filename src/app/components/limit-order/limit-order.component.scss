@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+div {
+  width: 350px;
+}
+
+article {
+  margin: 16px 0;
+}
+
+.token-img {
+  width: 24px;
+  height: 24px;
+}
+
+.info-card {
+  margin: 24px;
+  border: 1px dashed #008c73;
+  min-height: 200px;
+}
+button {
+  margin: 12px;
+}
+
+.warn {
+  border: 2px solid red;
+  span {
+    color: red;
+  }
+}
+
+h3 {
+  text-align: center;
+  border: 3px solid #008c73;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 24px;
+  background-color: rgb(255, 255, 172);
+}

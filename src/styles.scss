@@ -1,0 +1,101 @@
+@import "~@angular/material/theming";
+
+@include mat-core();
+$gnosis: (
+  50: #e0f1ee,
+  100: #b3ddd5,
+  200: #80c6b9,
+  300: #4daf9d,
+  400: #269d88,
+  500: #008c73,
+  600: #00846b,
+  700: #007960,
+  800: #006f56,
+  900: #005c43,
+  A100: #8dffda,
+  A200: #5affc9,
+  A400: #27ffb8,
+  A700: #0effb0,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  ),
+);
+$gnosis-accent: (
+  50: #f4faf9,
+  100: #e3f2ef,
+  200: #d0e9e5,
+  300: #bde0da,
+  400: #afd9d2,
+  500: #a1d2ca,
+  600: #99cdc5,
+  700: #8fc7bd,
+  800: #85c1b7,
+  900: #74b6ab,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #cefff7,
+  A700: #b5fff2,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  ),
+);
+
+$sushi-swap-gnosis-safe-primary: mat-palette($gnosis);
+$sushi-swap-gnosis-safe-accent: mat-palette($gnosis-accent);
+
+// The warn palette is optional (defaults to red).
+$sushi-swap-gnosis-safe-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$sushi-swap-gnosis-safe-theme: mat-light-theme(
+  (
+    color: (
+      primary: $sushi-swap-gnosis-safe-primary,
+      accent: $sushi-swap-gnosis-safe-accent,
+      warn: $sushi-swap-gnosis-safe-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($sushi-swap-gnosis-safe-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
