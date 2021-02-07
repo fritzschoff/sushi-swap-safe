@@ -5,7 +5,7 @@
   "start_url": ".",
   "icons": [
     {
-      "src": "/assets/sushi.png",
+      "src": "assets/sushi.png",
       "type": "image/png",
       "sizes": "192x192"
     }
