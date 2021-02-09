@@ -39,7 +39,7 @@
   <input matInput type="number" [formControl]="form.get('minOut')" autocomplete="off">
 </mat-form-field>
 
-<mat-card *ngIf="pairData?.tokens; else placeholder" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="24px"
+<mat-card *ngIf="pairData?.tokens" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="24px"
   class="info-card">
   <article fxLayout="row" fxLayoutAlign="center start">
     <ng-container *ngIf="form.get('tokenOne').value as token">Swapping
@@ -63,12 +63,6 @@
   </ng-template>
 </mat-card>
 
-<ng-template #placeholder>
-  <mat-card class="info-card">
-    <h4>Please fill out the form in order to see the calculation</h4>
-  </mat-card>
-</ng-template>
-
 <mat-card *ngIf="cannotFindPool" class="warn">
   <span>We didn't find any suitable route for {{ this.value.tokenOne?.symbol }} - {{ this.value.tokenTwo?.symbol }}.
     Trade will most likely fail!
@@ -87,7 +81,7 @@
       [disabled]="!value.tokenOne?.address || !value.tokenTwo?.address || value.minOut < 0 || value.tokenOneAmount < 0">
       Swap tokens
     </button>
-    <button mat-raised-button color="warn" (click)="resetForm()">Reset Form</button>
+    <button mat-raised-button color="warn" (click)="resetForm()">Reset Values</button>
   </ng-template>
 </ng-container>
 <ng-template #spinner>

@@ -20,8 +20,7 @@
   <img [src]="value.tokenTwo?.logoURI || 'assets/sushi.svg'" class="token-img">
 </div>
 
-<mat-card *ngIf="pairData?.tokens; else placeholder" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="24px"
-  class="info-card">
+<mat-card *ngIf="pairData?.tokens" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="24px" class="info-card">
   <ng-container *ngIf="form.get('tokenOne').value as token">Swapping
     <ng-container *ngIf="form.get('tokenOneAmount').value as amount"> {{amount}}</ng-container>
     {{token.symbol}}
@@ -42,12 +41,6 @@
   </ng-template>
 </mat-card>
 
-<ng-template #placeholder>
-  <mat-card class="info-card">
-    <h3>Please fill out the form in order to see the calculation</h3>
-  </mat-card>
-</ng-template>
-
 <mat-card *ngIf="cannotFindPool" class="warn">
   <span>We didn't find any suitable route for {{ this.value.tokenOne?.symbol }} - {{ this.value.tokenTwo?.symbol }}.
     Trade will most likely fail!
@@ -66,7 +59,7 @@
       [disabled]="!value.tokenOne?.address || !value.tokenTwo?.address">
       Swap tokens
     </button>
-    <button mat-raised-button color="warn" (click)="resetForm()">Reset Form</button>
+    <button mat-raised-button color="warn" (click)="resetForm()">Reset Values</button>
   </ng-template>
 </ng-container>
 <ng-template #spinner>

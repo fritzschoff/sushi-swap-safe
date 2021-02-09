@@ -36,9 +36,14 @@ button {
 
 h3 {
   text-align: center;
-  border: 3px solid #008c73;
+  color:white;
+  border: 3px solid #74b6ab;
   padding: 8px;
   border-radius: 5px;
   margin-bottom: 24px;
-  background-color: rgb(255, 255, 172);
+  background-color: #008c73;
+
+  a {
+    color: white;
+  }
 }
