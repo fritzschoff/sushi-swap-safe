@@ -5,7 +5,7 @@
 </h3>
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
   <token [token]="form.get('tokenOne')" label="Token to sell" [withOutEth]="true"></token>
-  <img [src]="value.tokenOne?.logoURI || 'assets/sushi.png'" class="token-img">
+  <img [src]="value.tokenOne?.logoURI || 'assets/sushi.svg'" class="token-img">
 </div>
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
   <mat-form-field appearance="outline">
@@ -22,7 +22,7 @@
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
   <token [token]="form.get('tokenTwo')" label="Token to buy" [withOutEth]="true">
   </token>
-  <img [src]="value.tokenTwo?.logoURI || 'assets/sushi.png'" class="token-img">
+  <img [src]="value.tokenTwo?.logoURI || 'assets/sushi.svg'" class="token-img">
 </div>
 
 <span>Specify the minimum amount you want to get <ng-container

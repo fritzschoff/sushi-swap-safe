@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="space-between baseline" fxLayoutGap="16px">
   <token [token]="form.get('tokenOne')" label="Token to sell"></token>
-  <img [src]="value.tokenOne?.logoURI || 'assets/sushi.png'" class="token-img">
+  <img [src]="value.tokenOne?.logoURI || 'assets/sushi.svg'" class="token-img">
 </div>
 <div fxLayout="row" fxLayoutAlign="space-between baseline" fxLayoutGap="16px">
   <mat-form-field appearance="outline">
@@ -17,7 +17,7 @@
 <div fxLayout="row" fxLayoutAlign="space-between baseline" fxLayoutGap="16px">
   <token [token]="form.get('tokenTwo')" label="Token to buy">
   </token>
-  <img [src]="value.tokenTwo?.logoURI || 'assets/sushi.png'" class="token-img">
+  <img [src]="value.tokenTwo?.logoURI || 'assets/sushi.svg'" class="token-img">
 </div>
 
 <mat-card *ngIf="pairData?.tokens; else placeholder" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="24px"
